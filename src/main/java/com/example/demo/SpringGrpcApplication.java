@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.grpc.client.GreeterClient;
 
@@ -28,5 +29,11 @@ public class SpringGrpcApplication {
 			return greeterClient.sayHello(name, city);	
 		}
 		
+		@GetMapping("/invoke")
+		public String testServiceBCall(@RequestParam String input) {
+			String url =
+			        "http://springapp--service:8081/callingB?input=" + input;
+			return new RestTemplate().getForObject(url, String.class);
+		}
 	}
 }

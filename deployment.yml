@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springgrpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springgrpc
+  template:
+    metadata:
+      labels:
+        app: springgrpc
+    spec:
+      containers:
+      - name: springgrpc
+        image: springgrpc
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        - containerPort: 9090

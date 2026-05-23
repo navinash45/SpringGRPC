@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springgrpc-service
+spec:
+  selector:
+    app: springgrpc
+  ports:
+    - name: rest
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+    - name: grpc
+      protocol: TCP
+      port: 9090
+      targetPort: 9090
+
+  type: NodePort
